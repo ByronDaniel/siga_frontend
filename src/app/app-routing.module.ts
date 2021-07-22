@@ -12,6 +12,7 @@ import { HeteroevaluationComponent } from './pages/teacher-eval/heteroevaluation
 import { CoevaluationCoordinatorAreaComponent } from './pages/teacher-eval/coevaluation-coordinator-area/coevaluation-coordinator-area.component';
 import { CoevaluationCoordinatorComponent } from './pages/teacher-eval/coevaluation-coordinator/coevaluation-coordinator.component';
 import { EvaluationTeacherComponent } from './pages/teacher-eval/evaluation-teacher/evaluation-teacher.component';
+import { SelfEvaluationComponent } from './pages/teacher-eval/self-evaluation/self-evaluation.component'
 
 
 // Application Guards
@@ -23,7 +24,8 @@ const routes: Routes = [
     { path: 'app-heteroevaluation', component: HeteroevaluationComponent },
     { path: 'app-coevaluation-coordinator-area', component: CoevaluationCoordinatorAreaComponent },
     { path: 'app-coevaluation-coordinator', component: CoevaluationCoordinatorComponent },
-    { path: 'app-evaluation-teacher', component: EvaluationTeacherComponent }
+    { path: 'app-evaluation-teacher', component: EvaluationTeacherComponent },
+    { path: 'app-self-evaluation', component: SelfEvaluationComponent}
     
   ];
 
@@ -87,8 +89,15 @@ const routes: Routes = [
                         path: 'evaluation-teacher',
                         loadChildren: () => import('./pages/teacher-eval/evaluation-teacher/evaluation-teacher.module').then(m => m.EvaluationTeacherModule),
                        canActivate: [AuthGuard]
-                    }
+                    },
+                    
+                    //ruta de autoevaluacion
+                    {
+                        path: 'self-evaluation',
+                        loadChildren:() => import('./pages/teacher-eval/self-evaluation/self-evaluation.module').then(m=> m.SelfEvaluationModule),
+                        canActivate: [AuthGuard]
 
+                    }
 
                    
                    /* {

@@ -37,6 +37,7 @@ import {SharedModule} from './pages/shared/shared.module';
 import {PasswordModule} from 'primeng/password';
 import { TeacherEvalComponent } from './pages/teacher-eval/teacher-eval.component';
 import { TeacherEvalService } from './services/teacher-eval/teacher-eval.service';
+import { SelfEvaluationComponent } from './app/teacher-eval/self-evaluation/self-evaluation.component';
 
 
 
@@ -71,6 +72,7 @@ import { TeacherEvalService } from './services/teacher-eval/teacher-eval.service
         AppMenuitemComponent,
         AppRightPanelComponent,
         AppTopBarComponent,
+        SelfEvaluationComponent,
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
