@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ExtracreditsComponent } from './extracredits/extracredits.component';
 import { GeneratePDFComponent } from './generate-pdf/generate-pdf.component';
+import { InvestigationComponent } from './investigation/investigation.component';
+
 import { ManagementComponent } from './management/management.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { HeteroevaluationComponent } from './heteroevaluation/heteroevaluation.component';
@@ -11,7 +14,7 @@ import { EvaluationTeacherComponent } from './evaluation-teacher/evaluation-teac
 
 const routes: Routes = [
   {
-    path: 'prueba',
+    path: 'matrix',
     component: ManagementComponent
   },
   {
@@ -19,24 +22,12 @@ const routes: Routes = [
     component: GeneratePDFComponent
   },
   {
-    path: 'evaluation',
-    component: EvaluationComponent
+    path: 'extra-credit',
+    component: ExtracreditsComponent
   },
   {
-    path: 'heteroevaluation',
-    component: HeteroevaluationComponent
-  },
-  {
-    path: 'coevaluation-coordinator-area',
-    component: CoevaluationCoordinatorAreaComponent
-  },
-  {
-    path: 'coevaluation-coordinator',
-    component: CoevaluationCoordinatorComponent
-  },
-  {
-    path: 'evaluation-teacher',
-    component: EvaluationTeacherComponent
+    path : 'investigation',
+    component: InvestigationComponent
   }
 ];
 

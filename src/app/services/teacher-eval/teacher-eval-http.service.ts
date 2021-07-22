@@ -1,149 +1,98 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {environment, WEB} from '../../../environments/environment';
-import {User} from '../../models/auth/models.index';
-import {URL} from '../../../environments/environment';
-import {MessageService} from '../app/message.service';
-import {AuthService} from '../auth/auth.service';
-
-
+import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-
 export class TeacherEvalHttpService {
-    API_URL_TEACHER_EVAL: string = environment.API_URL_TEACHEREVAL;
-    auth: User;
-    private headers : HttpHeaders;
+  /*Hola*/
+  private headers: HttpHeaders;
+  constructor(
 
-    constructor(private httpClient: HttpClient,
-                private authService: AuthService,
-                private router: Router,
-                private messageService: MessageService) {
-    }
+    private httpClient: HttpClient
+  ) { }
 
-    login(userCredentials: any, params = new HttpParams()) {
-        const url = URL + 'oauth/token';
-        const credentials = {
-            client_id: environment.CLIENT_ID,
-            client_secret: environment.CLIENT_SECRET,
-            grant_type: environment.GRANT_TYPE,
-            username: userCredentials.username,
-            password: userCredentials.password
-        };
-        return this.httpClient.post(url, credentials, {params});
-    }
+  getTeacher(url: string) {
+    url = environment.API_URL_TEACHEREVAL + url;
+    return this.httpClient.get(url, { headers: this.headers });
+  }
 
-    loginGoogle() {
-        const url = WEB + 'login/google';
-        return window.open(url, '_self');
-    }
+  getEvaluation(id: string) {
+    const url = environment.API_URL_TEACHEREVAL + 'evaluation/gestion';
+    return this.httpClient.get(`${url}/${id}`);
+  }
 
-    incorrectPassword(username: string, params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'auth/incorrect-password/' + username;
-        return this.httpClient.get(url, {params});
-    }
+  getExtraCredit(url: string) {
+    url = environment.API_URL_TEACHEREVAL + url;
+    return this.httpClient.get(url, { headers: this.headers });
+  }
 
-    resetAttempts(params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'auth/reset-attempts';
-        return this.httpClient.get(url, {params});
-    }
+  getOneCredit(id: string) {
+    const url = environment.API_URL_TEACHEREVAL + 'credit/show';
+    return this.httpClient.get(`${url}/${id}`, { headers: this.headers })
+  }
 
-    passwordForgot(username: any, params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'auth/password-forgot';
-        return this.httpClient.post(url, {username}, {params});
-    }
+  getOneResearch(id: string) {
+    const url = environment.API_URL_TEACHEREVAL + 'investigacion/show';
+    return this.httpClient.get(`${url}/${id}`, { headers: this.headers })
+  }
 
-    resetPassword(credentials: any, params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'auth/reset-password';
-        return this.httpClient.post(url, credentials, {params});
-    }
 
-    userUnlock(username: any, params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'auth/user-unlocked-user';
-        return this.httpClient.post(url, {username}, {params});
-    }
+  getResearch(url: string) {
+    url = environment.API_URL_TEACHEREVAL + url;
+    return this.httpClient.get(url, { headers: this.headers });
+  }
 
-    generateTransactionalCode(username: any, params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'auth/transactional-code';
-        return this.httpClient.post(url, null, {params});
-    }
+  addExtraCredit(id: string, data: any, params = new HttpParams()) {
+    const url = environment.API_URL_TEACHEREVAL + 'credit/store';
+    return this.httpClient.post(`${url}/${id}`, data, { params })
+  }
 
-    unlock(credentials: any, params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'auth/unlock-user';
-        return this.httpClient.post(url, credentials, {params});
-    }
+  addResearch(id: string, data: any, params = new HttpParams()) {
+    const url = environment.API_URL_TEACHEREVAL + 'investigacion/store';
+    return this.httpClient.post(`${url}/${id}`, data, { params })
+  }
 
-    getUser(username: string, params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'user/' + username;
-        return this.httpClient.get(url, {params});
-    }
+  deleteCredit(id: string) {
+    const url = environment.API_URL_TEACHEREVAL + 'credit/delete';
+    return this.httpClient.delete(`${url}/${id}`, { headers: this.headers })
+  }
 
-    getMenus(params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'module/menus';
-        return this.httpClient.get(url, {params});
-    }
+  deleteResearch(id: string) {
+    const url = environment.API_URL_TEACHEREVAL + 'investigacion/delete';
+    return this.httpClient.delete(`${url}/${id}`, { headers: this.headers })
+  }
 
-    logout(params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'auth/logout';
-        return this.httpClient.get(url, {params});
-    }
 
-    logoutAll(params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'auth/logout-all';
-        return this.httpClient.get(url, {params}).subscribe(response => {
-            this.authService.removeLogin();
-            this.router.navigate(['/auth/login']);
-        }, error => {
-            this.messageService.error(error);
-        });
-    }
+  updateCredits(id: string, diploma_yavirac: string, title_fourth_level: string, OCS_member: string, governing_processes: string, process_nouns: string, support_processes, total: string) {
+    const url = environment.API_URL_TEACHEREVAL + 'credit/update';
+    return this.httpClient.put(`${url}/${id}`,
+      {
+        diploma_yavirac,
+        title_fourth_level,
+        OCS_member,
+        governing_processes,
+        process_nouns,
+        support_processes,
+        total
 
-    get(url: string, params = new HttpParams()) {
-        url = this.API_URL_TEACHER_EVAL + url;
-        return this.httpClient.get(url, {params});
-    }
+      }, { headers: this.headers });
+  }
 
-    post(url: string, data: any, params = new HttpParams()) {
-        url = environment.API_URL_AUTHENTICATION + url;
-        return this.httpClient.post(url, data, {params});
-    }
+  updateResearch(id: string, inv_auto_eval: string, inv_pares: string, inv_coodinador: string, total: string) {
+    const url = environment.API_URL_TEACHEREVAL + 'investigacion/update';
+    return this.httpClient.put(`${url}/${id}`,
+      {
+        inv_auto_eval,
+        inv_pares,
+        inv_coodinador,
+        total
 
-    update(url: string, data: any, params = new HttpParams()) {
-        url = environment.API_URL_AUTHENTICATION + url;
-        return this.httpClient.put(url, data, {params});
-    }
+      }, { headers: this.headers });
+  }
 
-    delete(url: string, params = new HttpParams()) {
-        url = environment.API_URL_AUTHENTICATION + url;
-        return this.httpClient.put(url, {params});
-    }
 
-    getCatalogues (params = new HttpParams() ){
-        const url = environment.API_URL_APP + 'catalogues';
-        return this.httpClient.post(url, {params});
-    }
-    getEvaluationTypes(params = new HttpParams() ){
-        const url = environment.API_URL_TEACHEREVAL + 'evaluationType/get';
-        return this.httpClient.post(url, {params});
-    }
-
-    uploadAvatar(data: FormData, params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'users/avatars';
-        return this.httpClient.post(url, data, {params});
-    }
-
-    changePassword(data: any, params = new HttpParams()) {
-        const url = environment.API_URL_AUTHENTICATION + 'auth/change-password';
-        return this.httpClient.put(url, data, {params});
-    }
-    getTeacher(url : string ){
-        url = environment.API_URL_TEACHEREVAL + url;
-        return this.httpClient.get(url, {headers: this.headers});
-    }
 }
-
-
-

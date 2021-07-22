@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { MessageService } from 'src/app/services/app/message.service';
-import { TeacherEvalHttpService } from 'src/app/services/teacher-eval/teacher-eval-http.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas'
 
 @Component({
   selector: 'app-teacher-eval',
@@ -10,17 +9,9 @@ import { TeacherEvalHttpService } from 'src/app/services/teacher-eval/teacher-ev
 })
 export class TeacherEvalComponent implements OnInit {
 
-  constructor(public messageService: MessageService,
-              private spinnerService: NgxSpinnerService,
-              private teacherEvalHttpService: TeacherEvalHttpService) {
-                this.resetPaginator()
-              }
-
-  resetPaginator() {
-    throw new Error('Method not implemented.');
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
-  // hola
+// hola
 }
