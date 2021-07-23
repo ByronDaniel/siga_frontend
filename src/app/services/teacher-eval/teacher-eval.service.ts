@@ -82,7 +82,7 @@ export class TeacherEvalService {
   
     };
 
-    urleva: string = URL_API + "teacher-eval/question/index?evaluation_type_id=4&per_page=48&page=1";
+    urleva: string = URL_API + "teacher-eval/question/index?evaluation_type_id=3&per_page=8&page=1";
     urlevaluation: string = URL_API + "teacher-evaluation/create";
 
     getEvaluation(param: any): Observable<any> {   
@@ -97,4 +97,8 @@ export class TeacherEvalService {
      return this.http.post(this.urlevaluation, param);   
   
     };
+
+    postSelfEvaluations(id:string ,param: any): Observable<any> {
+      return this.http.post(`${this.urlevaluation}/${id}`, param);   
+     }
 }

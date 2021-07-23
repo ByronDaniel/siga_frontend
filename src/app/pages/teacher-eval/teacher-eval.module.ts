@@ -20,6 +20,7 @@ import { EditCreditComponent } from './edit-credit/edit-credit.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { EditInvestigationComponent } from './edit-investigation/edit-investigation.component';
+import { SelfEvaluationCoordinadorComponent } from './self-evaluation-coordinador/self-evaluation-coordinador.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { EditInvestigationComponent } from './edit-investigation/edit-investigat
     InvestigationComponent,
     EditCreditComponent,
     EditInvestigationComponent,
+    SelfEvaluationCoordinadorComponent,
   
   ],
   imports: [

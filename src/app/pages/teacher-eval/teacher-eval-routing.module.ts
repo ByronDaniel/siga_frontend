@@ -7,6 +7,7 @@ import { GeneratePDFComponent } from './generate-pdf/generate-pdf.component';
 import { InvestigationComponent } from './investigation/investigation.component';
 import { SelfEvaluationComponent }  from './self-evaluation/self-evaluation.component'
 import { TeacherListComponent } from './teacher-list/teacher-list.component'
+import { SelfEvaluationCoordinadorComponent } from './self-evaluation-coordinador/self-evaluation-coordinador.component'
 
 import { ManagementComponent } from './management/management.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path : 'self-evaluation',
     component: SelfEvaluationComponent
+  },
+  {
+    path : 'self-evaluation-coordinador',
+    component: SelfEvaluationCoordinadorComponent
   },
   {
     path : 'teacher-list',

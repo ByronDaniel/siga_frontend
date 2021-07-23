@@ -1,13 +1,8 @@
 <div class="p-shadow-24">
   <div style="background-color:white;" class="p-fluid p-formgrid p-grid">
     <div class="p-field p-col">
-      <h1>Auto Evaluación Docentes y Coordinadores de Carreras - 2021-1</h1>
-      <P>Sr.(a) Coordinador (a), lea detenidamente cada uno de las preguntas que se mostrarán a 
-          continuación y seleccione su respuesta según el rango de ponderación del 1 al 5, tomando 
-          en cuenta que el rango mínimo es 1 y el máximo 5; en lo posible responda a las preguntas de 
-          esta encuesta en base a las evidencias que le proporcionen las instancias correspondientes, a 
-          fin de garantizar una evaluación objetiva. Referente al periodo académico 
-          2021-1 de Junio 2021- Octubre 2021</P>
+      <h1>Auto Evaluación Docentes de Carreras - 2021-1</h1>
+      <P>Sr.(a) Coordinador (a), Lea detenidamente cada uno de las preguntas que se mostrarán a continuación y seleccione su respuesta según el rango de ponderación del 1 al 4, tomando en cuenta que el rango mínimo es 1 y el máximo 4; en lo posible responda a las preguntas de esta encuesta en base a las evidencias que le proporcionen las instancias correspondientes, a fin de garantizar una evaluación objetiva</P>
     </div>
   </div>
 </div>
@@ -26,8 +21,22 @@
         </div>
       </li>
      </ul>
-     <button (click)="getCheckSelect()" pButton type="button" label="Click" >Guardar</button>
   </div>
 </form>
+
+<center>
+  <button pButton type="button" routerLink="/teacher-eval/teacher-list" style="margin-left: 10px" label="Regresar"
+    icon="pi pi-times"></button>
+  <button (click)="confirm()" type="submit"  pButton icon="pi pi-check" style="margin-left: 10px" label="Guardar"></button>
+  </center>
+<p-confirmDialog #cd [style]="{width: '50vw'}">
+  <ng-template pTemplate="header">
+    <h3>Confirmar Guardado</h3>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+<button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept(); getCheckSelect()"></button>
+  </ng-template>
+</p-confirmDialog>
 
 
