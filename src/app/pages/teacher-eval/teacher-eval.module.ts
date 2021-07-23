@@ -16,11 +16,10 @@ import { ExtracreditsComponent } from './extracredits/extracredits.component';
 import {CardModule} from 'primeng/card';
 import {ScrollTopModule} from 'primeng/scrolltop';
 import { InvestigationComponent } from './investigation/investigation.component';
+import { EditCreditComponent } from './edit-credit/edit-credit.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
-import {Message,MessageService} from 'primeng/api';
+import { EditInvestigationComponent } from './edit-investigation/edit-investigation.component';
 
 
 @NgModule({
@@ -29,6 +28,8 @@ import {Message,MessageService} from 'primeng/api';
     GeneratePDFComponent,
     ExtracreditsComponent,
     InvestigationComponent,
+    EditCreditComponent,
+    EditInvestigationComponent,
   
   ],
   imports: [
@@ -45,10 +46,10 @@ import {Message,MessageService} from 'primeng/api';
     CardModule,
     ScrollTopModule, 
     ReactiveFormsModule,
-    ConfirmDialogModule,
-    MessagesModule,
-    MessageModule
-  ]
+    ConfirmDialogModule
+    
+  ],
+  providers: [ ConfirmationService]
 })
 export class TeacherEvalModule { }
 // hola

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditCreditComponent } from './edit-credit/edit-credit.component';
+import { EditInvestigationComponent } from './edit-investigation/edit-investigation.component';
 import { ExtracreditsComponent } from './extracredits/extracredits.component';
 import { GeneratePDFComponent } from './generate-pdf/generate-pdf.component';
 import { InvestigationComponent } from './investigation/investigation.component';
@@ -13,6 +15,7 @@ import { EvaluationTeacherComponent } from './evaluation-teacher/evaluation-teac
 
 
 const routes: Routes = [
+  
   {
     path: 'matrix',
     component: ManagementComponent
@@ -28,6 +31,14 @@ const routes: Routes = [
   {
     path : 'investigation',
     component: InvestigationComponent
+  },
+  {
+    path : 'edit-credit/:id',
+    component: EditCreditComponent
+  },
+  {
+    path : 'edit-investigation/:id',
+    component: EditInvestigationComponent
   }
 ];
 
