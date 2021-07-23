@@ -1,64 +1,100 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { URL_API } from '../../../environments/environment';
 
-import { Teacher } from '../../models/app/teacher';
-import { Evaluation } from 'src/app/models/teacher-eval/evaluation';
-import { ExtraCredit } from 'src/app/models/teacher-eval/extra-credit';
-import { Research } from 'src/app/models/teacher-eval/research';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class TeacherEvalService {
-  urlAvatar: string;
-          private headers : HttpHeaders;
-          constructor(private httpClient: HttpClient, private router: Router) {
-            this.urlAvatar = environment.STORAGE_URL;
-    
-        }
-
-  removeLogin() {
-    localStorage.removeItem('teacher');
-    localStorage.removeItem('evaluation');
-    localStorage.removeItem('extra_credit');
-    localStorage.removeItem('research');
 
 
-}
-setUrlAvatar(url: string) {
-  this.urlAvatar = environment.STORAGE_URL + url;
-}
+  constructor(protected http: HttpClient) {  }
 
-  getTeacher(): Teacher{
-    return localStorage.getItem('teacher') ? JSON.parse(localStorage.getItem('teacher')) : null;
-  }
-  getEvaluation() : Evaluation{
-    return localStorage.getItem('evaluation') ? JSON.parse(localStorage.getItem('evaluation')) : null;
+
+
+  // urlvs: string = "http://siga_backend.test/v1/teacher-eval/question/show/";
+  //urlvs: string = "http://siga_backend.test/v1/teacher-eval/question/index?evaluation_type_id=4&per_page=3&page=3";
+
+
+  urlvs: string = URL_API + "teacher-eval/question/index?evaluation_type_id=1&per_page=33&page=1";
+  urlguardar: string = URL_API + "teacher-eval/evaluation/create";
+  
+  getInit(param: any): Observable<any> {   
+    const params = {
+      per_page:'33',
+      page: '1'
+    };
+    return this.http.get(this.urlvs, { params: params })     
   }
 
-  getExtraCredit(): ExtraCredit{
-    return localStorage.getItem('extra_credit') ? JSON.parse(localStorage.getItem('extra_credit')) : null;
+  postEvaluationAdd(param: any): Observable<any> {
+    return this.http.post(this.urlguardar, param);   
+   }
+
+  urlhtr: string = URL_API + "teacher-eval/question/index?evaluation_type_id=1&per_page=33&page=1";
+  urlheteroevaluation: string = URL_API + "teacher-evaluation/create";
+
+  getHeteroevaluation(param: any): Observable<any> {   
+    const params = {
+      per_page:'33',
+      page: '1'
+    }
+    return this.http.get(this.urlhtr, { params: params })     
   }
 
-  getResearch(): Research{
-    return localStorage.getItem('research') ? JSON.parse(localStorage.getItem('research')) : null;
-  }
+  postHeteroevaluation(param: any): Observable<any> {
+    return this.http.post(this.urlheteroevaluation, param);   
+   };
 
-  setTeacher(teachers) {
-    localStorage.setItem('teacher', JSON.stringify(teachers));
+   urlcoev: string = URL_API + "teacher-eval/question/index?evaluation_type_id=3&per_page=61&page=1";
+   urlcoevaluation: string = URL_API + "teacher-evaluation/create";
+ 
+   getCoevaluation(param: any): Observable<any> {   
+    const params = {
+      per_page:'61',
+      page: '1'
+    }
+    return this.http.get(this.urlcoev, { params: params })     
   }
+ 
+   postCoeavaluation(param: any): Observable<any> {
+     return this.http.post(this.urlcoevaluation, param);   
+  
+    };
+ 
+    urlcoear: string = URL_API + "teacher-eval/question/index?evaluation_type_id=2&per_page=13&page=1";
+    urlcoevaluationarea: string = URL_API + "teacher-evaluation/create";
+ 
+    getEvaluationArea(param: any): Observable<any> {   
+      const params = {
+        per_page:'13',
+        page: '1'
+      }
+      return this.http.get(this.urlcoear, { params: params })     
+    }
+   postEvaluationArea(param: any): Observable<any> {
+     return this.http.post(this.urlcoevaluationarea, param);   
+  
+    };
 
-  setEvaluation(evaluations) {
-    localStorage.setItem('evaluation', JSON.stringify(evaluations));
-  }
+    urleva: string = URL_API + "teacher-eval/question/index?evaluation_type_id=4&per_page=48&page=1";
+    urlevaluation: string = URL_API + "teacher-evaluation/create";
 
-  setExtraCredit(extra_credits) {
-    localStorage.setItem('extra_credit', JSON.stringify(extra_credits));
-  }
-
-  setResearch(research) {
-    localStorage.setItem('extra_credit', JSON.stringify(research));
-  }
-
+    getEvaluation(param: any): Observable<any> {   
+      const params = {
+        per_page:'48',
+        page: '1'
+      }
+      return this.http.get(this.urleva, { params: params })     
+    }
+ 
+   postEvaluation(param: any): Observable<any> {
+     return this.http.post(this.urlevaluation, param);   
+  
+    };
 }

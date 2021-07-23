@@ -16,6 +16,11 @@ import { ExtracreditsComponent } from './extracredits/extracredits.component';
 import {CardModule} from 'primeng/card';
 import {ScrollTopModule} from 'primeng/scrolltop';
 import { InvestigationComponent } from './investigation/investigation.component';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {Message,MessageService} from 'primeng/api';
 
 
 @NgModule({
@@ -39,7 +44,10 @@ import { InvestigationComponent } from './investigation/investigation.component'
     CheckboxModule,
     CardModule,
     ScrollTopModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConfirmDialogModule,
+    MessagesModule,
+    MessageModule
   ]
 })
 export class TeacherEvalModule { }
