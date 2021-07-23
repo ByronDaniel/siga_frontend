@@ -119,7 +119,7 @@ export class SelfEvaluationComponent implements OnInit {
   //para traer las preguntas
   onTestWebService() {
 
-    this.teacherEvalService.getEvaluation(1).subscribe(result => {
+    this.teacherEvalService.getPairEvaluations(1).subscribe(result => {
       this.pregunta = result.data;
       this.getInicializarModelo();
 
@@ -185,7 +185,7 @@ export class SelfEvaluationComponent implements OnInit {
     }
     console.log(data);
     if (isValidateRadio) {
-      this.teacherEvalService.postSelfEvaluations(this.id, data ).subscribe(result => {
+      this.teacherEvalService.postPairEvaluations(this.id, data ).subscribe(result => {
         this.showSuccess();
       }, error => {
       });
