@@ -147,9 +147,6 @@ export class QuestionComponent implements OnInit {
     console.log(int);
   }
 
-
-
-
 }
 
 
