@@ -5,6 +5,8 @@ import { EditInvestigationComponent } from './edit-investigation/edit-investigat
 import { ExtracreditsComponent } from './extracredits/extracredits.component';
 import { GeneratePDFComponent } from './generate-pdf/generate-pdf.component';
 import { InvestigationComponent } from './investigation/investigation.component';
+import { SelfEvaluationComponent }  from './self-evaluation/self-evaluation.component'
+import { TeacherListComponent } from './teacher-list/teacher-list.component'
 
 import { ManagementComponent } from './management/management.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
@@ -16,7 +18,7 @@ import { EvaluationTeacherComponent } from './evaluation-teacher/evaluation-teac
 
 const routes: Routes = [
   
-  {
+  /*{
     path: 'matrix',
     component: ManagementComponent
   },
@@ -39,6 +41,14 @@ const routes: Routes = [
   {
     path : 'edit-investigation/:id',
     component: EditInvestigationComponent
+  },*/
+  {
+    path : 'self-evaluation',
+    component: SelfEvaluationComponent
+  },
+  {
+    path : 'teacher-list',
+    component: TeacherListComponent
   }
 ];
 

@@ -78,7 +78,7 @@ export class HeteroevaluationComponent implements OnInit {
       .append('page', paginator.current_page.toString())
       .append('per_page', paginator.per_page.toString());
 
-    this.teacherEvalHttpService.get('questions').subscribe(
+    this.teacherEvalHttpService.getTeacher('questions').subscribe(
       response => {
         this.questions = response['data'];
         this.paginator = response as Paginator;
